@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { Command } from './command.interface.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
 
@@ -10,7 +11,7 @@ export class ImportCommand implements Command {
     const [filename] = parameters;
 
     if (!filename) {
-      console.error('Specify file path');
+      console.error(chalk.redBright('Specify file path'));
       return;
     }
 
@@ -24,8 +25,8 @@ export class ImportCommand implements Command {
         throw err;
       }
 
-      console.error(`Can't import data from file: ${filename}`);
-      console.error(`Details: ${err.message}`);
+      console.error(chalk.redBright(`Can't import data from file: ${filename}`));
+      console.error(chalk.redBright(`Details: ${err.message}`));
     }
   }
 }
